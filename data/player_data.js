@@ -26,17 +26,18 @@ class Player{
         return (inv);
     }
 
-    adicionar_item(item, quantidade = 1){
+    adicionar_item(item, quantidade){
         if (!(item in this.inventario)){
-            return this.inventario[item] = quantidade
-        } else {
-            return this.inventario[item] += quantidade
+            return this.inventario[item] = quantidade 
         }
+        return this.inventario[item] += quantidade
+
     }
 }
 
-let player_inventario = {
-};
+// --------------------- INSTANCIAÇÃO DO PLAYER --------------------- \\
+
+let player_inventario = {};
 
 export const player = new Player(
     "TESTER", 

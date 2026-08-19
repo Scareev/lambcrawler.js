@@ -3,9 +3,10 @@ import * as Player from "./data/player_data.js";
 import promptSync from 'prompt-sync';
 
 let main = true;
-const version = '1.0';
+const version = '1.0.1';
 
 const prompt = promptSync({ sigint: true });
+const p = Player.player
 
 export function c(color, txt){
     switch(color){
@@ -21,12 +22,12 @@ export function c(color, txt){
 function choice_action(arg){
     switch(arg){
         case 'm':
-            if (!(Player.player.item_equipado == null)) {
+            if (!(p.item_equipado == null)) {
             console.log("\n"+"Iniciando mineração..."+"\n");
             Mina.minerar();
             break; }
             else {
-                c("vermelho", "SEM PICARETA")
+                c("vermelho", "\n"+"SEM PICARETA"+"\n");
                 break;
             }
 
@@ -35,7 +36,7 @@ function choice_action(arg){
             main = false;
             break;
         case 'i':
-            c("verde", "\n"+Player.player.mostrar_inventario()+"\n")
+            c("verde", "\n"+p.mostrar_inventario()+"\n")
             break;
         case 'l':
             c("verde", "\n"+ "Entrando na loja..." + "\n")
@@ -47,7 +48,7 @@ function choice_action(arg){
 
 function menu(){
     console.log("---LAMBCRAWLER " + version +"---" + "\n");
-    c('verde', Player.player.mostrar_info());
+    c('verde', p.mostrar_info());
     console.log("AÇÕES: m(minerar) / c(caçar - WIP) / i(inventário) / l(loja - WIP) / s(sair)");
     const choice = prompt("ESCOLHA: ");
     choice_action(choice);
